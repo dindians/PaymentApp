@@ -18,8 +18,8 @@ export class PaymentDetailFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    if(this.service.formData.paymentDetailId == 0) this.insertRecord(form)
-    else this.updateRecord(form);
+    if (this.service.formData.paymentDetailId === 0) { this.insertRecord(form); }
+    else { this.updateRecord(form); }
  }
 
   insertRecord(form: NgForm) {
@@ -31,7 +31,7 @@ export class PaymentDetailFormComponent implements OnInit {
         // ngx-toaster depends on @angular/animations: npm install @angular/animations --save
         // @angular/animation is already installed, see package.json
         // add toastr css to angular.json
-        this.toastr.success("Created successfully", 'Payment Detail Register');
+        this.toastr.success('Created successfully', 'Payment Detail Register');
       },
       err => { console.log(err); }
     );
@@ -46,7 +46,7 @@ export class PaymentDetailFormComponent implements OnInit {
         // ngx-toaster depends on @angular/animations: npm install @angular/animations --save
         // @angular/animation is already installed, see package.json
         // add toastr css to angular.json
-        this.toastr.info("Updated successfully", 'Payment Detail Register');
+        this.toastr.info('Updated successfully', 'Payment Detail Register');
       },
       err => { console.log(err); }
     );
