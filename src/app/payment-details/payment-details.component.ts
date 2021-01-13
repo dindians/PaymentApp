@@ -17,17 +17,17 @@ export class PaymentDetailsComponent implements OnInit {
     this.service.refreshList();
   }
 
-  populateForm(paymentDetail: PaymentDetail) {
+  populateForm(paymentDetail: PaymentDetail): void {
     // need a temporary object because of two-way binding between service.formData and the html form object.
     this.service.formData = Object.assign({}, paymentDetail);
   }
 
-  onDelete(paymentDetail: PaymentDetail) {
-    if(confirm(`Are you sure to delete the card ${paymentDetail.cardNumber}?`)) {
+  onDelete(paymentDetail: PaymentDetail): void {
+    if (confirm(`Are you sure to delete the card ${paymentDetail.cardNumber}?`)) {
       this.service.deletePaymentDetyail(paymentDetail.paymentDetailId).subscribe(
         res => {
           this.service.refreshList();
-          this.toastr.error(`Card ${paymentDetail.cardNumber} deleted`, "Payment Detail Register");
+          this.toastr.error(`Card ${paymentDetail.cardNumber} deleted`, 'Payment Detail Register');
         },
         err => { console.log(err); }
       );
