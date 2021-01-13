@@ -1,4 +1,4 @@
-.form-group labe {
+.form-group label {
     color: grey;
 }
 
@@ -11,7 +11,7 @@
     font-weight: 300;
 }
 
-theadth {
+thead th {
     font-weight: 400;
 }
 
