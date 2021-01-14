@@ -12,7 +12,7 @@ import { PaymentDetailService } from 'src/app/shared/payment-detail.service';
 })
 export class PaymentDetailFormComponent implements OnInit {
 
-  constructor(public service: PaymentDetailService, private toastr: ToastrService) { }
+  constructor(public readonly service: PaymentDetailService, private readonly toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -39,7 +39,7 @@ export class PaymentDetailFormComponent implements OnInit {
 
   updateRecord(form: NgForm): void {
     this.service.putPaymentDetail().subscribe(
-      res => {
+      response => {
         this.resetForm(form);
         this.service.refreshList();
         // ngx-toastr component is found on from npmjs.com. Latest version is installed with 'npm i ngx-toastr'
