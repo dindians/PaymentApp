@@ -4,15 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 import { PaymentDetailFormComponent } from './payment-details/payment-detail-form/payment-detail-form.component';
-import { HttpClientModule } from '@angular/common/http';
+import { PaymentDetailListComponent } from './payment-details/payment-detail-list/payment-detail-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PaymentDetailsComponent,
-    PaymentDetailFormComponent
+    PaymentDetailFormComponent,
+    PaymentDetailListComponent
   ],
   imports: [
     BrowserModule,

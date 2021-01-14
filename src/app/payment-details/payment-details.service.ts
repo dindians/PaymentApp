@@ -12,7 +12,7 @@ import {PaymentDetailApisService} from '../services/payment-detail-apis.service'
 export class PaymentDetailsService {
   constructor(private readonly paymentDetailApis: PaymentDetailApisService) { }
 
-  private formData: PaymentDetail = new PaymentDetail();
+  formData: PaymentDetail = new PaymentDetail();
   private list: PaymentDetail[];
 
   populateForm(paymentDetail: PaymentDetail): void {
