@@ -24,7 +24,7 @@ export class PaymentDetailsComponent implements OnInit {
 
   onDelete(paymentDetail: PaymentDetail): void {
     if (confirm(`Are you sure to delete the card ${paymentDetail.cardNumber}?`)) {
-      this.service.deletePaymentDetyail(paymentDetail.paymentDetailId).subscribe(
+      this.service.deletePaymentDetail(paymentDetail.paymentDetailId).subscribe(
         res => {
           this.service.refreshList();
           this.toastr.error(`Card ${paymentDetail.cardNumber} deleted`, 'Payment Detail Register');
