@@ -6,7 +6,7 @@
 |   |  |  |--payment-detail-form.components.ts|.html|.css
 |   |
 |   +--* shared
-|   |  |--payment-detail.service.ts
+|   |  |--payment-details.service.ts
 |   |  |--payment-detail.model.ts
 |   |
 |   |--app.module.ts

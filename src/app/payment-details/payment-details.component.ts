@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentDetail } from '../shared/payment-detail.model';
-import { PaymentDetailService } from '../shared/payment-detail.service';
+import { PaymentDetailsService } from './payment-details.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -10,15 +10,10 @@ import { ToastrService } from 'ngx-toastr';
   ]
 })
 export class PaymentDetailsComponent implements OnInit {
-  constructor(public readonly service: PaymentDetailService, private toastrService: ToastrService) { }
+  constructor(public readonly service: PaymentDetailsService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.service.refreshList();
-  }
-
-  populateForm(paymentDetail: PaymentDetail): void {
-    // need a temporary object because of two-way binding between service.formData and the html form object.
-    this.service.formData = Object.assign({}, paymentDetail);
   }
 
   onDelete(paymentDetail: PaymentDetail): void {

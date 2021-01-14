@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { PaymentDetail } from 'src/app/shared/payment-detail.model';
-import { PaymentDetailService } from 'src/app/shared/payment-detail.service';
+import { PaymentDetailsService } from 'src/app/payment-details/payment-details.service';
 
 @Component({
   selector: 'app-payment-detail-form',
@@ -11,12 +11,12 @@ import { PaymentDetailService } from 'src/app/shared/payment-detail.service';
   ]
 })
 export class PaymentDetailFormComponent implements OnInit {
-  constructor(public readonly service: PaymentDetailService, private readonly toastrService: ToastrService) { }
+  constructor(public readonly service: PaymentDetailsService, private readonly toastrService: ToastrService) { }
 
   ngOnInit(): void { }
 
   onSubmit(form: NgForm): void {
-    if (this.service.formData.paymentDetailId === 0) { this.insertRecord(form); }
+    if (this.service.formPaymentDetailId() === 0) { this.insertRecord(form); }
     else { this.updateRecord(form); }
  }
 
@@ -52,6 +52,6 @@ export class PaymentDetailFormComponent implements OnInit {
 
   resetForm(form: NgForm): void {
     form.form.reset();
-    this.service.formData = new PaymentDetail();
+    this.service.populateForm(new PaymentDetail());
   }
 }
