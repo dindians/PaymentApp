@@ -15,16 +15,23 @@ export class PaymentDetailFormComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  onSubmit(form: NgForm): void {
-    if (this.service.formPaymentDetailId() === 0) { this.insertRecord(form); }
-    else { this.updateRecord(form); }
- }
+  onSubmitForm(form: NgForm): void {
+    const onSuccess = () => {
+      this.resetForm(form);
+      this.service.refreshList();
+    };
+    if (this.service.formPaymentDetailId() === 0) { this.insertRecord(form, onSuccess); }
+    else { this.updateRecord(form, onSuccess); }
+  }
 
-  insertRecord(form: NgForm): void {
+  onResetForm(form: NgForm): void {
+    this.resetForm(form);
+  }
+
+  insertRecord(form: NgForm, onSuccess: () => void): void {
     this.service.postPaymentDetail().subscribe(
       response => {
-        this.resetForm(form);
-        this.service.refreshList();
+        onSuccess();
         // ngx-toastr component is found on from npmjs.com. Latest version is installed with 'npm i ngx-toastr'
         // ngx-toaster depends on @angular/animations: npm install @angular/animations --save
         // @angular/animation is already installed, see package.json
@@ -35,11 +42,10 @@ export class PaymentDetailFormComponent implements OnInit {
     );
   }
 
-  updateRecord(form: NgForm): void {
+  updateRecord(form: NgForm, onSuccess: () => void): void {
     this.service.putPaymentDetail().subscribe(
       response => {
-        this.resetForm(form);
-        this.service.refreshList();
+        onSuccess();
         // ngx-toastr component is found on from npmjs.com. Latest version is installed with 'npm i ngx-toastr'
         // ngx-toaster depends on @angular/animations: npm install @angular/animations --save
         // @angular/animation is already installed, see package.json
