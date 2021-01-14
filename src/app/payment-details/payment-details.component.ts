@@ -10,8 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   ]
 })
 export class PaymentDetailsComponent implements OnInit {
-
-  constructor(public service: PaymentDetailService, private toastr: ToastrService) { }
+  constructor(public readonly service: PaymentDetailService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.service.refreshList();
@@ -25,9 +24,9 @@ export class PaymentDetailsComponent implements OnInit {
   onDelete(paymentDetail: PaymentDetail): void {
     if (confirm(`Are you sure to delete the card ${paymentDetail.cardNumber}?`)) {
       this.service.deletePaymentDetail(paymentDetail.paymentDetailId).subscribe(
-        res => {
+        response => {
           this.service.refreshList();
-          this.toastr.error(`Card ${paymentDetail.cardNumber} deleted`, 'Payment Detail Register');
+          this.toastrService.error(`Card ${paymentDetail.cardNumber} deleted`, 'Payment Detail Register');
         },
         err => { console.log(err); }
       );

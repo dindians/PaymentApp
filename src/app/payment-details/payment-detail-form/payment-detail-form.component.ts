@@ -11,11 +11,9 @@ import { PaymentDetailService } from 'src/app/shared/payment-detail.service';
   ]
 })
 export class PaymentDetailFormComponent implements OnInit {
+  constructor(public readonly service: PaymentDetailService, private readonly toastrService: ToastrService) { }
 
-  constructor(public readonly service: PaymentDetailService, private readonly toastr: ToastrService) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   onSubmit(form: NgForm): void {
     if (this.service.formData.paymentDetailId === 0) { this.insertRecord(form); }
@@ -31,7 +29,7 @@ export class PaymentDetailFormComponent implements OnInit {
         // ngx-toaster depends on @angular/animations: npm install @angular/animations --save
         // @angular/animation is already installed, see package.json
         // add toastr css to angular.json
-        this.toastr.success(`Created successfully ${response.id}`, 'Payment Detail Register');
+        this.toastrService.success(`Created successfully ${response.id}`, 'Payment Detail Register');
       },
       err => { console.log(err); }
     );
@@ -46,7 +44,7 @@ export class PaymentDetailFormComponent implements OnInit {
         // ngx-toaster depends on @angular/animations: npm install @angular/animations --save
         // @angular/animation is already installed, see package.json
         // add toastr css to angular.json
-        this.toastr.info('Updated successfully', 'Payment Detail Register');
+        this.toastrService.info('Updated successfully', 'Payment Detail Register');
       },
       err => { console.log(err); }
     );

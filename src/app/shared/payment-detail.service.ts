@@ -11,7 +11,6 @@ import {GetPaymentDetailsResponse} from './get-payment-details-response';
   providedIn: 'root'
 })
 export class PaymentDetailService {
-
   constructor(private http: HttpClient) { }
 
   readonly baseUrl = 'https://localhost:44318/api/PaymentDetail';
