@@ -24,14 +24,14 @@ export class PaymentDetailFormComponent implements OnInit {
 
   insertRecord(form: NgForm): void {
     this.service.postPaymentDetail().subscribe(
-      res => {
+      response => {
         this.resetForm(form);
         this.service.refreshList();
         // ngx-toastr component is found on from npmjs.com. Latest version is installed with 'npm i ngx-toastr'
         // ngx-toaster depends on @angular/animations: npm install @angular/animations --save
         // @angular/animation is already installed, see package.json
         // add toastr css to angular.json
-        this.toastr.success('Created successfully', 'Payment Detail Register');
+        this.toastr.success(`Created successfully ${response.id}`, 'Payment Detail Register');
       },
       err => { console.log(err); }
     );
