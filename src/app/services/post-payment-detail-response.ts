@@ -1,3 +1,3 @@
 export class PostPaymentDetailResponse {
-  id: string;
+  id: number;
 }
