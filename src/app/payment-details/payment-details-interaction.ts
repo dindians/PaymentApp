@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { PaymentDetail } from '../shared/payment-detail.model';
+import { PaymentDetail } from '../services/payment-detail';
 import {PaymentDetailApisService} from '../services/payment-detail-apis.service';
+import {PaymentDetails} from '../services/payment-details';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentDetailsService {
+export class PaymentDetailsInteraction {
   constructor(private readonly paymentDetailApis: PaymentDetailApisService) { }
-
+  /** payment detail form data */
   formData: PaymentDetail = new PaymentDetail();
-  private list: PaymentDetail[];
+  /** payment detail list data */
+  list: PaymentDetails;
 
   private populateForm(paymentDetail: PaymentDetail): void { this.formData = Object.assign({}, paymentDetail); }
 
@@ -17,18 +19,16 @@ export class PaymentDetailsService {
 
   private clearFormAndRefreshList(): void {
     this.clearForm();
-    this.getPaymentDetails();
+    this.refreshList();
   }
 
-  getPaymentDetails(): void { this.paymentDetailApis.getPaymentDetails().toPromise().then(response => this.list = response); }
+  refreshList(): void { this.paymentDetailApis.getPaymentDetails().toPromise().then(response => this.list = response); }
 
-  paymentDetails(): Array<PaymentDetail> { return this.list; }
+  resetForm(): void { this.clearForm(); }
 
-  onResetForm(): void { this.clearForm(); }
+  selectListItem(paymentDetail: PaymentDetail): void { this.populateForm(paymentDetail); }
 
-  onSelectPaymentDetail(paymentDetail: PaymentDetail): void { this.populateForm(paymentDetail); }
-
-  deletePaymentDetail(paymentDetail: PaymentDetail, onSuccess: (message: string) => void): void {
+  deleteListItem(paymentDetail: PaymentDetail, onSuccess: (message: string) => void): void {
     this.paymentDetailApis.deletePaymentDetail(paymentDetail.paymentDetailId).subscribe(
       response => {
         onSuccess(`Card ${paymentDetail.cardNumber} deleted`);
@@ -38,7 +38,7 @@ export class PaymentDetailsService {
     );
   }
 
-  insertPaymentDetail(onSuccess: (message: string) => void): void {
+  insertFromFormData(onSuccess: (message: string) => void): void {
     this.paymentDetailApis.postPaymentDetail(this.formData).subscribe(
       response => {
         onSuccess(`Card created (${response.id})`);
@@ -48,7 +48,7 @@ export class PaymentDetailsService {
     );
   }
 
-  updatePaymentDetail(onSuccess: (message: string) => void): void {
+  updateFromFormData(onSuccess: (message: string) => void): void {
     this.paymentDetailApis.putPaymentDetail(this.formData).subscribe(
       response => {
         onSuccess(`Card ${this.formData.cardNumber} updated`);

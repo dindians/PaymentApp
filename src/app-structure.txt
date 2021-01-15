@@ -1,14 +1,22 @@
 * src
 +---* app
+|   |--app.component.ts|.html|.css
+|   |--app.module.ts
+|   |
 |   +--* payment-details
 |   |  |--payment-details.component.ts|.html|.css
 |   |  +--* payment-detail-form
 |   |  |  |--payment-detail-form.components.ts|.html|.css
+|   |  +--* payment-detail-list
+|   |  |  |--payment-detail-list.components.ts|.html|.css
+|   |  +--payment-details.interaction.ts
 |   |
-|   +--* shared
+|   +--* services
+|   |  |--payment-detail.ts
 |   |  |--payment-details.service.ts
-|   |  |--payment-detail.model.ts
-|   |
-|   |--app.module.ts
+|   |  |--delete-payment-detail-response.ts
+|   |  |--post-payment-detail-response.ts
+|   |  |--put-payment-detail-response.ts
+|   |  |--payment-details.apis.service.ts
 |
 |--index.html (cdn path for bootstrap & fa icon)
