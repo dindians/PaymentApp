@@ -7,7 +7,7 @@ import {PaymentDetails} from '../services/payment-details';
   providedIn: 'root'
 })
 export class PaymentDetailsInteraction {
-  constructor(private readonly paymentDetailApis: PaymentDetailApisService) { }
+  constructor(private readonly paymentDetailApis: PaymentDetailApisService) { }  // PaymentDetailApisService | PaymentDetailMockService
   /** payment detail form data */
   formData: PaymentDetail = new PaymentDetail();
   /** payment detail list data */

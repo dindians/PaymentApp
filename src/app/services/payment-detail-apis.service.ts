@@ -6,11 +6,12 @@ import {PaymentDetails} from './payment-details';
 import {PutPaymentDetailResponse} from './put-payment-detail-response';
 import {DeletePaymentDetailResponse} from './delete-payment-detail-response';
 import {PostPaymentDetailResponse} from './post-payment-detail-response';
+import {PaymentDetailApis} from './payment-detail-apis';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentDetailApisService {
+export class PaymentDetailApisService implements PaymentDetailApis {
   constructor(private readonly httpClient: HttpClient) { }
 
   readonly baseUrl = 'https://localhost:44318/api/PaymentDetail';
