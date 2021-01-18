@@ -17,18 +17,18 @@ export class PaymentDetailApisService implements PaymentDetailApis {
   readonly baseUrl = 'https://localhost:44318/api/PaymentDetail';
 
   getPaymentDetails(): Observable<PaymentDetails> {
-    return this.httpClient.get(this.baseUrl) as Observable<PaymentDetails>;
+    return this.httpClient.get<PaymentDetails>(this.baseUrl);
   }
 
   postPaymentDetail(paymentDetail: PaymentDetail): Observable<PostPaymentDetailResponse> {
-    return this.httpClient.post(this.baseUrl, paymentDetail) as Observable<PostPaymentDetailResponse>;
+    return this.httpClient.post<PostPaymentDetailResponse>(this.baseUrl, paymentDetail);
   }
 
   putPaymentDetail(paymentDetail: PaymentDetail): Observable<PutPaymentDetailResponse> {
-    return this.httpClient.put(`${this.baseUrl}/${paymentDetail.paymentDetailId}`, paymentDetail) as Observable<PutPaymentDetailResponse>;
+    return this.httpClient.put<PutPaymentDetailResponse>(`${this.baseUrl}/${paymentDetail.paymentDetailId}`, paymentDetail);
   }
 
   deletePaymentDetail(paymentDetailId: number): Observable<DeletePaymentDetailResponse> {
-    return this.httpClient.delete(`${this.baseUrl}/${paymentDetailId}`) as Observable<DeletePaymentDetailResponse>;
+    return this.httpClient.delete<DeletePaymentDetailResponse>(`${this.baseUrl}/${paymentDetailId}`);
   }
 }
